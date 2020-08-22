@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import HelloWorld from "./components/HelloWorld";
 export default {
   name: "App",
@@ -63,9 +65,15 @@ export default {
   },
   data: () => ({
     drawer: null,
+    user_info: null,
   }),
   created() {
     this.$vuetify.theme.dark = true;
+  },
+  mounted() {
+    axios
+      .get("https://portfoliovisualizer.herokuapp.com/API/user/")
+      .then((response) => (this.user_info = response));
   },
 };
 </script>Z
